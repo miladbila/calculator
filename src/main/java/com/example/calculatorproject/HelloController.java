@@ -18,10 +18,10 @@ public class HelloController {
                     equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(') &&
                     parenthesis > 0) {
                 equation.append(")");
-                Calculate.equation+=(String.valueOf(number));
-                Calculate.equation+=(" ");
-                Calculate.equation+=(")");
-                Calculate.equation+=(" ");
+                Calculate.equation += (String.valueOf(number));
+                Calculate.equation += (" ");
+                Calculate.equation += (")");
+                Calculate.equation += (" ");
                 number.delete(0, number.length());
                 parenthesis--;
                 updateMainText(String.valueOf(equation));
@@ -40,11 +40,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("/");
-            Calculate.equation+=(String.valueOf(number));
-            Calculate.equation+=(" ");
+            Calculate.equation += (String.valueOf(number));
+            Calculate.equation += (" ");
             number.delete(0, number.length());
-            Calculate.equation+=(" ");
-            Calculate.equation+=("/");
+            Calculate.equation += ("/");
+            Calculate.equation += (" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -59,7 +59,11 @@ public class HelloController {
 
     @FXML
     void equalButtonClick(ActionEvent event) {
-        Calculate.calculate();
+        Calculate.equation += (String.valueOf(number));
+        double result = Calculate.calculate();
+        number.delete(0, number.length());
+        equation.delete(0, equation.length());
+        updateMainText(String.valueOf(result));
     }
 
     @FXML
@@ -83,11 +87,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("-");
-            Calculate.equation+=(String.valueOf(number));
-            Calculate.equation+=(" ");
+            Calculate.equation += (String.valueOf(number));
+            Calculate.equation += (" ");
             number.delete(0, number.length());
-            Calculate.equation+=("-");
-            Calculate.equation+=(" ");
+            Calculate.equation += ("-");
+            Calculate.equation += (" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -97,11 +101,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("*");
-            Calculate.equation+=(String.valueOf(number));
-            Calculate.equation+=(" ");
+            Calculate.equation += (String.valueOf(number));
+            Calculate.equation += (" ");
             number.delete(0, number.length());
-            Calculate.equation+=("*");
-            Calculate.equation+=(" ");
+            Calculate.equation += ("*");
+            Calculate.equation += (" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -128,16 +132,16 @@ public class HelloController {
             if (equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                     equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' && equation.charAt(equation.length() - 1) != ')') {
                 equation.append("(");
-                Calculate.equation+=("(");
-                Calculate.equation+=(" ");
+                Calculate.equation += ("(");
+                Calculate.equation += (" ");
                 number.delete(0, number.length());
                 parenthesis++;
                 updateMainText(String.valueOf(equation));
             }
         } else {
             equation.append("(");
-            Calculate.equation+=("(");
-            Calculate.equation+=(" ");
+            Calculate.equation += ("(");
+            Calculate.equation += (" ");
             parenthesis++;
             updateMainText(String.valueOf(equation));
         }
@@ -149,11 +153,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("+");
-            Calculate.equation+=(String.valueOf(number));
-            Calculate.equation+=(" ");
+            Calculate.equation += (String.valueOf(number));
+            Calculate.equation += (" ");
             number.delete(0, number.length());
-            Calculate.equation+=("+");
-            Calculate.equation+=(" ");
+            Calculate.equation += ("+");
+            Calculate.equation += (" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -163,11 +167,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("^");
-            Calculate.equation+=(String.valueOf(number));
-            Calculate.equation+=(" ");
+            Calculate.equation += (String.valueOf(number));
+            Calculate.equation += (" ");
             number.delete(0, number.length());
-            Calculate.equation+=("^");
-            Calculate.equation+=(" ");
+            Calculate.equation += ("^");
+            Calculate.equation += (" ");
             updateMainText(String.valueOf(equation));
         }
 
