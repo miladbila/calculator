@@ -111,8 +111,6 @@ public class Calculate {
             }
         }
         while (!stack.isEmpty()) {
-            if (stack.peek().equals("("))
-                return "Invalid Expression";
             result += " ";
             result += stack.peek();
             stack.pop();

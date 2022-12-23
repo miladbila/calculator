@@ -60,9 +60,16 @@ public class HelloController {
     @FXML
     void equalButtonClick(ActionEvent event) {
         Calculate.equation += (String.valueOf(number));
+        Calculate.equation += (" ");
         double result = Calculate.calculate();
         number.delete(0, number.length());
         equation.delete(0, equation.length());
+        if (parenthesis>0)
+            while (parenthesis>0) {
+                parenthesis--;
+                Calculate.equation += (")");
+                Calculate.equation += (" ");
+            }
         updateMainText(String.valueOf(result));
     }
 
