@@ -15,6 +15,11 @@ public class HelloController {
     }
 
     @FXML
+    void deleteButtonClick(ActionEvent event) {
+
+    }
+
+    @FXML
     void divisionButtonClick(ActionEvent event) {
 
     }
@@ -45,7 +50,7 @@ public class HelloController {
     }
 
     @FXML
-    void multiplictionButtonClick(ActionEvent event) {
+    void multiplicationButtonClick(ActionEvent event) {
 
     }
 

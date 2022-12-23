@@ -57,7 +57,7 @@
                   <Font size="37.0" />
                </font>
             </Button>
-            <Button layoutX="149.0" layoutY="10.0" mnemonicParsing="false" onAction="#multiplictionButtonClick" prefHeight="78.0" prefWidth="74.0" text="*">
+            <Button layoutX="149.0" layoutY="10.0" mnemonicParsing="false" onAction="#multiplicationButtonClick" prefHeight="78.0" prefWidth="74.0" text="*">
                <font>
                   <Font size="37.0" />
                </font>
@@ -113,6 +113,11 @@
             <Button layoutX="149.0" layoutY="10.0" mnemonicParsing="false" onAction="#closedParenthesisButtonClick" prefHeight="78.0" prefWidth="73.0" text=")">
                <font>
                   <Font size="37.0" />
+               </font>
+            </Button>
+            <Button layoutX="218.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteButtonClick" prefHeight="78.0" prefWidth="67.0" text="&lt;-">
+               <font>
+                  <Font size="27.0" />
                </font>
             </Button>
          </children>
