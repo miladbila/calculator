@@ -14,8 +14,7 @@ public class Calculate {
         double value;
         String p = "";
         String[] split = postFix.split(" ");
-        for (int i = 0; i < split.length; i++) {
-            String temp = split[i];
+        for (String temp : split) {
             if (!temp.equals("+") && !temp.equals("-")
                     && !temp.equals("*") && !temp.equals("/") && !temp.equals("^")) {
                 stack.push(temp);
@@ -24,46 +23,41 @@ public class Calculate {
                 choice = temp;
             }
             switch (choice) {
-                case "+":
+                case "+" -> {
                     x = Double.parseDouble(stack.pop());
                     y = Double.parseDouble(stack.pop());
                     value = x + y;
                     result = p + value;
                     stack.push(result);
-                    break;
-                case "-":
+                }
+                case "-" -> {
                     x = Double.parseDouble(stack.pop());
                     y = Double.parseDouble(stack.pop());
                     value = y - x;
                     result = p + value;
                     stack.push(result);
-                    break;
-                case "*":
+                }
+                case "*" -> {
                     x = Double.parseDouble(stack.pop());
                     y = Double.parseDouble(stack.pop());
                     value = x * y;
                     result = p + value;
                     stack.push(result);
-                    break;
-
-                case "/":
+                }
+                case "/" -> {
                     x = Double.parseDouble(stack.pop());
                     y = Double.parseDouble(stack.pop());
                     value = y / x;
                     result = p + value;
                     stack.push(result);
-                    break;
-
-                case "^":
+                }
+                case "^" -> {
                     x = Double.parseDouble(stack.pop());
                     y = Double.parseDouble(stack.pop());
                     value = Math.pow(y, x);
                     result = p + value;
                     stack.push(result);
-                    break;
-
-                default:
-                    continue;
+                }
             }
         }
         return Double.parseDouble(result);
@@ -79,20 +73,20 @@ public class Calculate {
     }
 
     static String infixToPostfix(String equation) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         Stack<String> stack = new Stack<>();
-        String split[] = equation.split(" ");
-        for (String c : split) {
+        String[] split = equation.split(" ");
+        for (String c : split)
             if (!(c.equals("+") || c.equals("-") || c.equals("*") || c.equals("/") || c.equals("^") || c.equals("(") || c.equals(")"))) {
-                result += " ";
-                result += c;
+                result.append(" ");
+                result.append(c);
             } else if (c.equals("("))
                 stack.push(c);
             else if (c.equals(")")) {
                 while (!stack.isEmpty()
                         && !stack.peek().equals("(")) {
-                    result += " ";
-                    result += stack.peek();
+                    result.append(" ");
+                    result.append(stack.peek());
                     stack.pop();
                 }
 
@@ -100,18 +94,17 @@ public class Calculate {
             } else {
                 while (!stack.isEmpty()
                         && Prec(c) <= Prec(stack.peek())) {
-                    result += " ";
-                    result += stack.peek();
+                    result.append(" ");
+                    result.append(stack.peek());
                     stack.pop();
                 }
                 stack.push(c);
             }
-        }
         while (!stack.isEmpty()) {
-            result += " ";
-            result += stack.peek();
+            result.append(" ");
+            result.append(stack.peek());
             stack.pop();
         }
-        return result;
+        return result.toString();
     }
 }
