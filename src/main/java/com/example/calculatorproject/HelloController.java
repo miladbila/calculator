@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
 public class HelloController {
-    private StringBuilder number = new StringBuilder();
-    private StringBuilder equation = new StringBuilder();
+    private final StringBuilder number = new StringBuilder();
+    private final StringBuilder equation = new StringBuilder();
     private int parenthesis = 0;
     @FXML
     private Text mainText;
@@ -18,10 +18,10 @@ public class HelloController {
                     equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(') &&
                     parenthesis > 0) {
                 equation.append(")");
-                Calculate.equation += (String.valueOf(number));
-                Calculate.equation += (" ");
-                Calculate.equation += (")");
-                Calculate.equation += (" ");
+                Calculate.equation.append(number);
+                Calculate.equation.append(" ");
+                Calculate.equation.append(")");
+                Calculate.equation.append(" ");
                 number.delete(0, number.length());
                 parenthesis--;
                 updateMainText(String.valueOf(equation));
@@ -30,7 +30,9 @@ public class HelloController {
 
     @FXML
     void deleteButtonClick(ActionEvent event) {
-        equation.deleteCharAt(equation.length() - 1);
+        equation.delete(0, equation.length());
+        number.delete(0, number.length());
+        Calculate.equation.delete(0, Calculate.equation.length());
         updateMainText(String.valueOf(equation));
 
     }
@@ -40,11 +42,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("/");
-            Calculate.equation += (String.valueOf(number));
-            Calculate.equation += (" ");
+            Calculate.equation.append(number);
+            Calculate.equation.append(" ");
             number.delete(0, number.length());
-            Calculate.equation += ("/");
-            Calculate.equation += (" ");
+            Calculate.equation.append("/");
+            Calculate.equation.append(" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -59,18 +61,18 @@ public class HelloController {
 
     @FXML
     void equalButtonClick(ActionEvent event) {
-        Calculate.equation += (String.valueOf(number));
-        Calculate.equation += (" ");
+        Calculate.equation.append(number);
+        Calculate.equation.append(" ");
         number.delete(0, number.length());
         equation.delete(0, equation.length());
         while (parenthesis > 0) {
             parenthesis--;
-            Calculate.equation += (")");
-            Calculate.equation += (" ");
+            Calculate.equation.append(")");
+            Calculate.equation.append(" ");
         }
         double result = Calculate.calculate();
         updateMainText(String.valueOf(result));
-        Calculate.equation = "";
+        Calculate.equation.delete(0, Calculate.equation.length());
     }
 
     @FXML
@@ -94,11 +96,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("-");
-            Calculate.equation += (String.valueOf(number));
-            Calculate.equation += (" ");
+            Calculate.equation.append(number);
+            Calculate.equation.append(" ");
             number.delete(0, number.length());
-            Calculate.equation += ("-");
-            Calculate.equation += (" ");
+            Calculate.equation.append("-");
+            Calculate.equation.append(" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -108,11 +110,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("*");
-            Calculate.equation += (String.valueOf(number));
-            Calculate.equation += (" ");
+            Calculate.equation.append(number);
+            Calculate.equation.append(" ");
             number.delete(0, number.length());
-            Calculate.equation += ("*");
-            Calculate.equation += (" ");
+            Calculate.equation.append("*");
+            Calculate.equation.append(" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -139,16 +141,16 @@ public class HelloController {
             if (equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                     equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' && equation.charAt(equation.length() - 1) != ')') {
                 equation.append("(");
-                Calculate.equation += ("(");
-                Calculate.equation += (" ");
+                Calculate.equation.append("(");
+                Calculate.equation.append(" ");
                 number.delete(0, number.length());
                 parenthesis++;
                 updateMainText(String.valueOf(equation));
             }
         } else {
             equation.append("(");
-            Calculate.equation += ("(");
-            Calculate.equation += (" ");
+            Calculate.equation.append("(");
+            Calculate.equation.append(" ");
             parenthesis++;
             updateMainText(String.valueOf(equation));
         }
@@ -160,11 +162,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("+");
-            Calculate.equation += (String.valueOf(number));
-            Calculate.equation += (" ");
+            Calculate.equation.append(number);
+            Calculate.equation.append(" ");
             number.delete(0, number.length());
-            Calculate.equation += ("+");
-            Calculate.equation += (" ");
+            Calculate.equation.append("+");
+            Calculate.equation.append(" ");
             updateMainText(String.valueOf(equation));
         }
     }
@@ -174,11 +176,11 @@ public class HelloController {
         if (!(equation.charAt(equation.length() - 1) == '+' || equation.charAt(equation.length() - 1) == '-' || equation.charAt(equation.length() - 1) == '*' ||
                 equation.charAt(equation.length() - 1) == '/' || equation.charAt(equation.length() - 1) == '^' || equation.charAt(equation.length() - 1) == '(')) {
             equation.append("^");
-            Calculate.equation += (String.valueOf(number));
-            Calculate.equation += (" ");
+            Calculate.equation.append(number);
+            Calculate.equation.append(" ");
             number.delete(0, number.length());
-            Calculate.equation += ("^");
-            Calculate.equation += (" ");
+            Calculate.equation.append("^");
+            Calculate.equation.append(" ");
             updateMainText(String.valueOf(equation));
         }
 

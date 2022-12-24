@@ -3,10 +3,11 @@ package com.example.calculatorproject;
 import java.util.Stack;
 
 public class Calculate {
-    public static String equation = "";
+
+    public static StringBuilder equation = new StringBuilder();
 
     public static double calculate() {
-        String postFix = infixToPostfix(equation);
+        String postFix = infixToPostfix(String.valueOf(equation));
         Stack<String> stack = new Stack<>();
         double x, y;
         String result = "";
